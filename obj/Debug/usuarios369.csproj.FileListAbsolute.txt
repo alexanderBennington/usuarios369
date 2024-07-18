@@ -1,0 +1,9 @@
+D:\Alexander\cursos_csharp\usuarios369\usuarios369\bin\Debug\usuarios369.exe
+D:\Alexander\cursos_csharp\usuarios369\usuarios369\bin\Debug\usuarios369.pdb
+D:\Alexander\cursos_csharp\usuarios369\usuarios369\obj\Debug\usuarios369.csproj.AssemblyReference.cache
+D:\Alexander\cursos_csharp\usuarios369\usuarios369\obj\Debug\usuarios369.Presentacion.Usuarios.resources
+D:\Alexander\cursos_csharp\usuarios369\usuarios369\obj\Debug\usuarios369.Properties.Resources.resources
+D:\Alexander\cursos_csharp\usuarios369\usuarios369\obj\Debug\usuarios369.csproj.GenerateResource.cache
+D:\Alexander\cursos_csharp\usuarios369\usuarios369\obj\Debug\usuarios369.csproj.CoreCompileInputs.cache
+D:\Alexander\cursos_csharp\usuarios369\usuarios369\obj\Debug\usuarios369.exe
+D:\Alexander\cursos_csharp\usuarios369\usuarios369\obj\Debug\usuarios369.pdb
