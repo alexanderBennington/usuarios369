@@ -51,7 +51,7 @@ namespace usuarios369.Datos
             try
             {
                 CONEXIONMASESTRA.abrir();
-                cmd = new SqlCommand("editar_usuario", CONEXIONMASESTRA.conexion);
+                cmd = new SqlCommand("editar_usuarios", CONEXIONMASESTRA.conexion);
                 cmd.CommandType = CommandType.StoredProcedure;
                 cmd.Parameters.AddWithValue("@Id_usuario", dt.Idusuario);
                 cmd.Parameters.AddWithValue("@Usuario", dt.Usuario);
@@ -66,6 +66,67 @@ namespace usuarios369.Datos
                 else
                 {
                     return false;
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+                return false;
+            }
+            finally
+            {
+                CONEXIONMASESTRA.cerrar();
+            }
+        }
+
+        public bool eliminar(lusuarios dt)
+        {
+            try
+            {
+                CONEXIONMASESTRA.abrir();
+                cmd = new SqlCommand("eliminar_usuario", CONEXIONMASESTRA.conexion);
+                cmd.CommandType = CommandType.StoredProcedure;
+                cmd.Parameters.AddWithValue("@Id_usuario", dt.Idusuario);
+
+                if (cmd.ExecuteNonQuery() != 0)
+                {
+                    return true;
+                }
+                else
+                {
+                    return false;
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+                return false;
+            }
+            finally
+            {
+                CONEXIONMASESTRA.cerrar();
+            }
+        }
+
+        public DataTable buscar(string parametros)
+        {
+            try
+            {
+                CONEXIONMASESTRA.abrir();
+                cmd = new SqlCommand("buscar_usuario", CONEXIONMASESTRA.conexion);
+                cmd.CommandType = CommandType.StoredProcedure;
+                cmd.Parameters.AddWithValue("@buscador", parametros);
+
+                if (cmd.ExecuteNonQuery() != 0)
+                {
+                    DataTable dt = new DataTable();
+                    SqlDataAdapter da = new SqlDataAdapter(cmd);
+                    da.Fill(dt);
+                    return dt;
+                }
+                else
+                {
+                    return null;
                 }
             }
             catch (Exception ex)

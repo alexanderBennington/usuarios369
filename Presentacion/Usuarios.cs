@@ -119,9 +119,10 @@ namespace usuarios369.Presentacion
 
         private void datalistado_CellClick(object sender, DataGridViewCellEventArgs e)
         {
-            if(e.ColumnIndex == this.datalistado.Columns["Editar"].Index)
+            id_usuario = Convert.ToInt32(datalistado.SelectedCells[2].Value.ToString());
+
+            if (e.ColumnIndex == this.datalistado.Columns["Editar"].Index)
             {
-                id_usuario = Convert.ToInt32(datalistado.SelectedCells[2].Value.ToString);
                 txtUsuario.Text = datalistado.SelectedCells[3].Value.ToString();
                 txtPass.Text = datalistado.SelectedCells[4].Value.ToString();
                 Icono.BackgroundImage = null;
@@ -131,11 +132,66 @@ namespace usuarios369.Presentacion
 
                 panelUsuario.Visible = true;
                 panelUsuario.Dock = DockStyle.Fill;
-                btnGuardar.Visible = true;
-                btnGuardarcambios.Visible = false;
-                txtUsuario.Clear();
-                txtPass.Clear();
+                btnGuardar.Visible = false;
+                btnGuardarcambios.Visible = true;
+            }
+
+            if (e.ColumnIndex == this.datalistado.Columns["Eliminar"].Index)
+            {
+                DialogResult result;
+                result = MessageBox.Show("¿Desea eliminar este registro?", "Registro eliminado", MessageBoxButtons.OKCancel, MessageBoxIcon.Question);
+                if(result == DialogResult.OK)
+                {
+                    eliminar_usuario();
+                    mostrar_usuarios();
+                }
             }
         }
+
+        private void btnVolver_Click(object sender, EventArgs e)
+        {
+            panelUsuario.Visible = false;
+            panelUsuario.Dock = DockStyle.None;
+        }
+
+        private void btnGuardarcambios_Click(object sender, EventArgs e)
+        {
+            editar_usuario();
+            mostrar_usuarios();
+        }
+
+        private void editar_usuario()
+        {
+            lusuarios dt = new lusuarios();
+            dusuarios funcion = new dusuarios();
+            dt.Idusuario = id_usuario;
+            dt.Usuario = txtUsuario.Text;
+            dt.Pass = txtPass.Text;
+            System.IO.MemoryStream ms = new System.IO.MemoryStream();
+            Icono.Image.Save(ms, Icono.Image.RawFormat);
+            dt.Icono = ms.GetBuffer();
+            dt.Estado = "ACTIVO";
+
+            if (funcion.editar(dt))
+            {
+                MessageBox.Show("Usuario Modificado", "Registro correcto");
+                panelUsuario.Visible = false;
+                panelUsuario.Dock = DockStyle.None;
+            }
+        }
+
+        private void eliminar_usuario()
+        {
+            lusuarios dt = new lusuarios();
+            dusuarios funcion = new dusuarios();
+            dt.Idusuario = id_usuario;
+            if (funcion.eliminar(dt))
+            {
+                MessageBox.Show("Usuario eliminado", "Eliminación correcta");
+                panelUsuario.Visible = false;
+                panelUsuario.Dock = DockStyle.None;
+            }
+        }
+
     }
 }
