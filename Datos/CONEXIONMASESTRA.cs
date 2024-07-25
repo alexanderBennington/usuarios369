@@ -9,7 +9,7 @@ namespace usuarios369.Datos
 {
     internal static class CONEXIONMASESTRA
     {
-        public static SqlConnection conexion = new SqlConnection("Data source=DESKTOP-0GJMMO1\\SQLEXPRESS; Initial Catalog=USUARIOSDB; Integrated Security=true");
+        public static SqlConnection conexion = new SqlConnection(@"Data source=DESKTOP-0GJMMO1\SQLEXPRESS; Initial Catalog=USUARIOSBD; Integrated Security=true");
         public static void abrir()
         {
             if (conexion.State == ConnectionState.Closed)
